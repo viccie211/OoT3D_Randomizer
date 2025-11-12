@@ -2,6 +2,7 @@
 #define _SAVEFILE_H_
 
 #include "z3D/z3D.h"
+#include "z3D/z3Dscene.h"
 
 #define SAVEFILE_SCENES_DISCOVERED_IDX_COUNT 4
 #define SAVEFILE_ENTRANCES_DISCOVERED_IDX_COUNT 66
@@ -30,6 +31,8 @@ void SaveFile_LoadExtSaveData(u32 saveNumber);
 void SaveFile_SaveExtSaveData(u32 saveNumber);
 void SaveFile_EnforceHealthLimit(void);
 u8 SaveFile_SwordlessPatchesEnabled(void);
+void SaveFile_SetCollectedRandomizedRespawningCollectibleFlag(s16 sceneNum, u16 collectibleFlag);
+u8 SaveFile_GetCollectedRandomizedRespawningCollectibleFlag(s16 sceneNum, u16 collectibleFlag);
 
 // Increment the version number whenever the ExtSaveData structure is changed
 #define EXTSAVEDATA_VERSION 16
@@ -71,6 +74,8 @@ typedef struct {
     s8 option_IgnoreMaskReaction;
     s8 option_SkipSongReplays;
     s8 option_FreeCamControl;
+    u32 collectedRandomizedRespawningRupeeFlags[SCENE_MAX];
+    u32 collectedRandomizedRupeeCircleRupeeFlags[SCENE_MAX];
 } ExtSaveData;
 
 #ifdef DECLARE_EXTSAVEDATA
