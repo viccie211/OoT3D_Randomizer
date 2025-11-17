@@ -80,6 +80,8 @@ typedef struct {
     u8 extInf[EXTINF_SIZE];
     u32 scenesDiscovered[SAVEFILE_SCENES_DISCOVERED_IDX_COUNT];
     u32 entrancesDiscovered[SAVEFILE_ENTRANCES_DISCOVERED_IDX_COUNT];
+    u32 rupeesanityFlags[SCENE_MAX];
+    u32 rupeesanityRupeeCircleRupeeFlags[SCENE_MAX];
     u8 triforcePieces;
 } MultiplayerSaveContext;
 
@@ -144,6 +146,15 @@ static void Multiplayer_Overwrite_mSaveContext(void) {
     for (size_t i = 0; i < SAVEFILE_ENTRANCES_DISCOVERED_IDX_COUNT; i++) {
         mSaveContext.entrancesDiscovered[i] = gExtSaveData.entrancesDiscovered[i];
     }
+
+    for (size_t i = 0; i < SCENE_MAX; i++) {
+        mSaveContext.rupeesanityFlags[i]=gExtSaveData.rupeesanityFlags[i];
+    }
+    
+    for (size_t i = 0; i < SCENE_MAX; i++) {
+        mSaveContext.rupeesanityRupeeCircleRupeeFlags[i]=gExtSaveData.rupeesanityRupeeCircleRupeeFlags[i];
+    }
+
     mSaveContext.triforcePieces = gExtSaveData.triforcePieces;
 }
 
@@ -206,6 +217,15 @@ static void Multiplayer_Overwrite_gSaveContext(void) {
     for (size_t i = 0; i < SAVEFILE_ENTRANCES_DISCOVERED_IDX_COUNT; i++) {
         gExtSaveData.entrancesDiscovered[i] = mSaveContext.entrancesDiscovered[i];
     }
+    
+    for (size_t i = 0; i < SCENE_MAX; i++) {
+        mSaveContext.rupeesanityFlags[i]=gExtSaveData.rupeesanityFlags[i];
+    }
+    
+    for (size_t i = 0; i < SCENE_MAX; i++) {
+        mSaveContext.rupeesanityRupeeCircleRupeeFlags[i]=gExtSaveData.rupeesanityRupeeCircleRupeeFlags[i];
+    }
+    
     gExtSaveData.triforcePieces = mSaveContext.triforcePieces;
 }
 
@@ -272,6 +292,10 @@ u8 prevExtInf[EXTINF_SIZE];
 u8 prevTriforcePieces;
 s16 prevHealth;
 s16 prevRupees;
+u32 prevRupeesanityFlags[SCENE_MAX];
+u32 prevRupeesanityRupeeCircleRupeeFlags[SCENE_MAX];
+
+
 
 typedef enum {
     // Ghost Data
@@ -311,6 +335,8 @@ typedef enum {
     PACKET_EXTINF,
     PACKET_DISCOVEREDSCENE,
     PACKET_DISCOVEREDENTRANCE,
+    PACKET_RUPEESANITYFLAGS,
+    PACKET_RUPEESANITYRUPEECIRCLEFLAGS,
     PACKET_TRIFORCEPIECES,
     PACKET_UNLOCKEDDOOR,
     PACKET_ACTORUPDATE,
@@ -526,6 +552,14 @@ static void Multiplayer_Sync_Init(void) {
     // Extra Info Table
     for (size_t i = 0; i < EXTINF_SIZE; i++) {
         prevExtInf[i] = gExtSaveData.extInf[i];
+    }
+
+    for (size_t i = 0; i < SCENE_MAX; i++) {
+        prevRupeesanityFlags[i]=gExtSaveData.rupeesanityFlags[i];
+    }
+    
+    for (size_t i = 0; i < SCENE_MAX; i++) {
+        prevRupeesanityRupeeCircleRupeeFlags[i]=gExtSaveData.rupeesanityRupeeCircleRupeeFlags[i];
     }
 
     // Triforce Pieces
@@ -870,6 +904,30 @@ static void Multiplayer_Sync_SharedProgress(void) {
             }
         }
         prevExtInf[index] = gExtSaveData.extInf[index];
+    }
+
+    for(size_t index=0;index<SCENE_MAX;index++;){
+        if (prevRupeesanityFlags[index] != gExtSaveData.rupeesanityFlags[index]) {
+            for (size_t bit = 0; bit < BIT_COUNT(gExtSaveData.rupeesanityFlags[index]); bit++) {
+                s8 result = BitCompare(gExtSaveData.rupeesanityFlags[index], prevRupeesanityFlags[index], bit);
+                if (result > 0) {
+                    Multiplayer_Send_ExtInfBit(index, bit, 1);
+                } else if (result < 0) {
+                    Multiplayer_Send_ExtInfBit(index, bit, 0);
+                }
+            }
+        }
+        prevExtInf[index] = gExtSaveData.extInf[index];
+    }
+    if (prevWorldMapAreaData != gSaveContext.worldMapAreaData) {
+        for (size_t bit = 0; bit < BIT_COUNT(gSaveContext.worldMapAreaData); bit++) {
+            s8 result = BitCompare(gSaveContext.worldMapAreaData, prevWorldMapAreaData, bit);
+            if (result > 0) {
+                Multiplayer_Send_WorldMapBit(bit, 1);
+            } else if (result < 0) {
+                Multiplayer_Send_WorldMapBit(bit, 0);
+            }
+        }
     }
 
     // Triforce Pieces
@@ -2184,6 +2242,71 @@ void Multiplayer_Receive_ExtInfBit(u16 senderID) {
         prevExtInf[index] &= ~(1 << bit);
     }
 }
+void Multiplayer_Send_RupeeSanityFlagsBit(u8 index, u8 bit, u8 setOrUnset) {
+    if (!IsSendReceiveReady() || gSettingsContext.mp_SharedProgress == OFF) {
+        return;
+    }
+    memset(mBuffer, 0, mBufSize);
+    u8 memSpacer = PrepareSharedProgressPacket(PACKET_RUPEESANITYFLAGS);
+
+    mBuffer[memSpacer++] = index;
+    mBuffer[memSpacer++] = bit;
+    mBuffer[memSpacer++] = setOrUnset;
+    Multiplayer_SendPacket(memSpacer, UDS_BROADCAST_NETWORKNODEID);
+}
+
+void Multiplayer_Receive_RupeeSanityFlagsBit(u16 senderID) {
+    if (!IsInSameSyncGroup() || gSettingsContext.mp_SharedProgress == OFF) {
+        return;
+    }
+    u8 memSpacer = GetSharedProgressMemSpacerOffset();
+
+    u8 index      = mBuffer[memSpacer++];
+    u8 bit        = mBuffer[memSpacer++];
+    u8 setOrUnset = mBuffer[memSpacer++];
+
+    if (setOrUnset) {
+        mSaveContext.rupeeSanityFlags[index] |= (1 << bit);
+        prevRupeeSanityFlags[index] |= (1 << bit);
+    } else {
+        mSaveContext.rupeeSanityFlags[index] &= ~(1 << bit);
+        prevRupeeSanityFlags[index] &= ~(1 << bit);
+    }
+}
+
+void Multiplayer_Send_RupeeSanityRupeeCircleFlagsBit(u8 index, u8 bit, u8 setOrUnset) {
+    if (!IsSendReceiveReady() || gSettingsContext.mp_SharedProgress == OFF) {
+        return;
+    }
+    memset(mBuffer, 0, mBufSize);
+    u8 memSpacer = PrepareSharedProgressPacket(PACKET_RUPEESANITYRUPEECIRCLEFLAGS);
+
+    mBuffer[memSpacer++] = index;
+    mBuffer[memSpacer++] = bit;
+    mBuffer[memSpacer++] = setOrUnset;
+    Multiplayer_SendPacket(memSpacer, UDS_BROADCAST_NETWORKNODEID);
+}
+
+void Multiplayer_Receive_RupeeSanityRupeeCircleFlagsBit(u16 senderID) {
+    if (!IsInSameSyncGroup() || gSettingsContext.mp_SharedProgress == OFF) {
+        return;
+    }
+    u8 memSpacer = GetSharedProgressMemSpacerOffset();
+
+    u8 index      = mBuffer[memSpacer++];
+    u8 bit        = mBuffer[memSpacer++];
+    u8 setOrUnset = mBuffer[memSpacer++];
+
+    if (setOrUnset) {
+        mSaveContext.rupeeSanityRupeeCircleFlags[index] |= (1 << bit);
+        prevRupeeSanityRupeeCircleFlags[index] |= (1 << bit);
+    } else {
+        mSaveContext.rupeeSanityRupeeCircleFlags[index] &= ~(1 << bit);
+        prevRupeeSanityRupeeCircleFlags[index] &= ~(1 << bit);
+    }
+}
+
+
 
 void Multiplayer_Send_DiscoveredScene(u32 index, u32 bit) {
     if (!IsSendReceiveReady() || gSettingsContext.mp_SharedProgress == OFF) {
@@ -2747,6 +2870,8 @@ static void Multiplayer_UnpackPacket(u16 senderID) {
         Multiplayer_Receive_ExtInfBit,
         Multiplayer_Receive_DiscoveredScene,
         Multiplayer_Receive_DiscoveredEntrance,
+        Multiplayer_Receive_RupeeSanityFlagsBit,
+        Multiplayer_Receive_RupeeSanityRupeeCircleFlagsBit,
         Multiplayer_Receive_TriforcePieces,
         Multiplayer_Receive_UnlockedDoor,
         Multiplayer_Receive_ActorUpdate,
