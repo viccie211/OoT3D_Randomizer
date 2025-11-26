@@ -141,8 +141,8 @@ static ItemOverride_Key ItemOverride_GetSearchKey(Actor* actor, u8 scene, u8 ite
             // value at or above 0x40. We've reserved 0x40-0x46 for Rupee circle rupees.
             collectibleFlag = currentItem->actor.home.rot.z;
         }
-        s32 respawningCollected = collectibleFlag >= 0x20 && SaveFile_GetRupeeSanityFlag(
-                                                                 gGlobalContext->sceneNum, collectibleFlag);
+        s32 respawningCollected =
+            collectibleFlag >= 0x20 && SaveFile_GetRupeeSanityFlag(gGlobalContext->sceneNum, collectibleFlag);
 
         if ((collectibleType > 0x02 && collectibleType != 0x06 && collectibleType != 0x11) || respawningCollected) {
             return (ItemOverride_Key){ .all = 0 };
@@ -582,10 +582,12 @@ u8 ItemOverride_GetItemDrop(EnItem00* this) {
 
     if (isMajorItem) {
         ItemOverride_PushPendingOverride(override);
+        this->actor.params = ITEM00_HEART_PIECE; // to play no SFX
+        this->actor.parent = &PLAYER->actor;     // to set collection flag
         Actor_Kill(&this->actor);
     } else {
         // Minor item, behave as item drop.
-        this->actor.params = ITEM00_RECOVERY_HEART;
+        this->actor.params = ITEM00_RECOVERY_HEART; // to play minor item SFX
         ItemTable_CallEffect(itemRow);
         Item_Give(gGlobalContext, itemRow->actionId);
     }
