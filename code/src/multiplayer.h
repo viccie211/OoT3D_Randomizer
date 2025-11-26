@@ -53,6 +53,8 @@ void Multiplayer_Send_BigPoePoints(u32 pointDiff);
 void Multiplayer_Send_FishingFlag(u8 bit, u8 setOrUnset);
 void Multiplayer_Send_WorldMapBit(u8 bit, u8 setOrUnset);
 void Multiplayer_Send_ExtInfBit(u8 index, u8 bit, u8 setOrUnset);
+void Multiplayer_Send_RupeeSanityFlagsBit(u8 index, u8 bit);
+void Multiplayer_Send_RupeeSanityRupeeCircleFlagsBit(u8 index, u8 bit);
 void Multiplayer_Send_TriforcePieces(u32 piecesDiff);
 void Multiplayer_Send_FullEntranceSync(u16 targetID);
 void Multiplayer_Send_DiscoveredScene(u32 index, u32 bit);
