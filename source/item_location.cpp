@@ -1009,6 +1009,11 @@ void LocationTable_Init() {
     locationTable[DEKU_TREE_B2F_UNDER_WATER_HEART_2]                            = ItemLocation::Collectable(0x00, 0x30, "Deku Tree B2F Underwater Heart 2",            DEKU_TREE_B2F_UNDER_WATER_HEART_2,           RECOVERY_HEART,     {Category::cDekuTree, Category::cRecoveryHeart},                                                                                                                 SpoilerCollectionCheckGroup::GROUP_DUNGEON_DEKU_TREE);
     locationTable[DEKU_TREE_B2F_UNDER_WATER_HEART_3]                            = ItemLocation::Collectable(0x00, 0x31, "Deku Tree B2F Underwater Heart 3",            DEKU_TREE_B2F_UNDER_WATER_HEART_3,           RECOVERY_HEART,     {Category::cDekuTree, Category::cRecoveryHeart},                                                                                                                 SpoilerCollectionCheckGroup::GROUP_DUNGEON_DEKU_TREE);
 
+    locationTable[DMT_COW_GROTTO_HEART_1]                   = ItemLocation::Collectable(0x3E, 0x28, "DMT Cow Grotto Heart 1",  DMT_COW_GROTTO_HEART_1 ,   RECOVERY_HEART,    {Category::cDeathMountainTrail, Category::cRecoveryHeart, Category::cGrotto},                                                                                     SpoilerCollectionCheckGroup::GROUP_DEATH_MOUNTAIN_TRAIL);
+    locationTable[DMT_COW_GROTTO_HEART_2]                   = ItemLocation::Collectable(0x3E, 0x29, "DMT Cow Grotto Heart 2",  DMT_COW_GROTTO_HEART_2 ,   RECOVERY_HEART,    {Category::cDeathMountainTrail, Category::cRecoveryHeart, Category::cGrotto},                                                                                     SpoilerCollectionCheckGroup::GROUP_DEATH_MOUNTAIN_TRAIL);
+    locationTable[DMT_COW_GROTTO_HEART_3]                   = ItemLocation::Collectable(0x3E, 0x2A, "DMT Cow Grotto Heart 3",  DMT_COW_GROTTO_HEART_3 ,   RECOVERY_HEART,    {Category::cDeathMountainTrail, Category::cRecoveryHeart, Category::cGrotto},                                                                                     SpoilerCollectionCheckGroup::GROUP_DEATH_MOUNTAIN_TRAIL);
+    locationTable[DMT_COW_GROTTO_HEART_4]                   = ItemLocation::Collectable(0x3E, 0x2B, "DMT Cow Grotto Heart 4",  DMT_COW_GROTTO_HEART_4 ,   RECOVERY_HEART,    {Category::cDeathMountainTrail, Category::cRecoveryHeart, Category::cGrotto},                                                                                     SpoilerCollectionCheckGroup::GROUP_DEATH_MOUNTAIN_TRAIL);
+
     /*-------------------------------
           --- GOSSIP STONES ---
       -------------------------------*/
@@ -1475,6 +1480,10 @@ std::vector<LocationKey> overworldLocations = {
   DMT_COW_GROTTO_RUPEE_CIRCLE_GREEN_RUPEE_5,
   DMT_COW_GROTTO_RUPEE_CIRCLE_GREEN_RUPEE_6,
   DMT_COW_GROTTO_RUPEE_CIRCLE_RED_RUPEE,
+  DMT_COW_GROTTO_HEART_1,
+  DMT_COW_GROTTO_HEART_2,
+  DMT_COW_GROTTO_HEART_3,
+  DMT_COW_GROTTO_HEART_4,
 
   // Goron City
   GC_MAZE_LEFT_CHEST,
