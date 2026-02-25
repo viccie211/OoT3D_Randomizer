@@ -696,11 +696,7 @@ void GenerateItemPool() {
         }
     }
 
-    if (ShuffleRecoveryHearts) {
-        for (LocationKey loc : GetLocations(allLocations, Category::cRecoveryHeart)) {
-            AddItemToMainPool(Location(loc)->GetVanillaItem());
-        }
-    } else {
+    if (!ShuffleRecoveryHearts) {
         for (LocationKey loc : GetLocations(allLocations, Category::cRecoveryHeart)) {
             Location(loc)->PlaceVanillaItem();
         }
