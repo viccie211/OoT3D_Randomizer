@@ -168,6 +168,10 @@ DungeonInfo DodongosCavern = DungeonInfo("Dodongo's Cavern", DODONGOS_CAVERN, DO
                                              DODONGOS_CAVERN_GS_ALCOVE_ABOVE_STAIRS,
                                              DODONGOS_CAVERN_GS_BACK_ROOM,
                                              DODONGOS_CAVERN_GS_SIDE_ROOM_NEAR_LOWER_LIZALFOS,
+                                             DODONGOS_CAVERN_1F_MINIBOSS_ROOM_HEART_BEHIND_LAVAFALL,
+                                             DODONGOS_CAVERN_2F_BLADE_TRAPS_ROOM_HEART_BEHIND_BLOCK,
+                                             DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1,
+                                             DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2,
                                          },
                                          {
                                              // MQ Locations

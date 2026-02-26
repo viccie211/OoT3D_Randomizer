@@ -215,6 +215,38 @@ void HintTable_Init_Exclude_Dungeon() {
                        Text{"#beneath a headstone# in Dodongo's Cavern lies", /*french*/"#sous une pierre tombale# dans la caverne Dodongo gît", /*spanish*/"#bajo una lápida# en la Cueva de los Dodongos yace", /*italian*/"#sotto una lapide# nella caverna dei Dodongo |giace|giacciono|", /*german*/"#unter einem Grabstein# in Dodongos Höhle, |wäre|wären|"},
     });
 
+    hintTable[DODONGOS_CAVERN_1F_MINIBOSS_ROOM_HEART_BEHIND_LAVAFALL] = HintText::Exclude({
+                       // obscure text
+                       Text{"#behind a lavafall# lies", /*french*/"#behind a lavafall# lies", /*spanish*/"#behind a lavafall# lies", /*italian*/"#behind a lavafall# lies", /*german*/"#behind a lavafall# lies"},
+                      },{},
+                       // Clear text
+                       Text{"#behind a lavafall next to a miniboss in DC# lies", /*french*/"#behind a lavafall next to a miniboss in DC# lies", /*spanish*/"#behind a lavafall next to a miniboss in DC# lies", /*italian*/"#behind a lavafall next to a miniboss in DC# lies", /*german*/"#behind a lavafall next to a miniboss in DC# lies"},                       
+   );
+
+   hintTable[DODONGOS_CAVERN_2F_BLADE_TRAPS_ROOM_HEART_BEHIND_BLOCK] = HintText::Exclude({
+                       // obscure text
+                       Text{"some blade traps hid #behind a block#", /*french*/"some blade traps hid #behind a block#", /*spanish*/"some blade traps hid #behind a block#", /*italian*/"some blade traps hid #behind a block#", /*german*/"some blade traps hid #behind a block#"},
+                      },{},
+                      // Clear text
+                       Text{"close to some blade traps #in DC behind a pull block #is", /*french*/"close to some blade traps #in DC behind a pull block #is", /*spanish*/"close to some blade traps #in DC behind a pull block #is", /*italian*/"close to some blade traps #in DC behind a pull block #is", /*german*/"close to some blade traps #in DC behind a pull block #is"},                       
+   );
+
+      hintTable[DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1"},
+                      },{},
+                      // Clear text
+                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint"},                       
+   );
+   
+      hintTable[DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2"},
+                      },{},
+                      // Clear text
+                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint"},                       
+   );
+
     hintTable[DODONGOS_CAVERN_KING_DODONGO_HEART] = HintText::Exclude({
                        // obscure text
                        Text{"the #Infernal Dinosaur# holds", /*french*/"le #dinosaure infernal# possède", /*spanish*/"el #dinosaurio infernal# porta", /*italian*/"il #dinosauro degli inferi# possiede", /*german*/"nahe dem #Infernosaurus#, |wäre|wären|"},
