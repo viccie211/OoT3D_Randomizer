@@ -252,6 +252,10 @@ DungeonInfo ForestTemple =
                     FOREST_TEMPLE_GS_LEVEL_ISLAND_COURTYARD,
                     FOREST_TEMPLE_GS_LOBBY,
                     FOREST_TEMPLE_GS_BASEMENT,
+                    FOREST_TEMPLE_WELL_HEART_1,
+                    FOREST_TEMPLE_WELL_HEART_2,
+                    FOREST_TEMPLE_LEVEL_ISLAND_RIDGE_HEART_1,
+                    FOREST_TEMPLE_LEVEL_ISLAND_RIDGE_HEART_2,
                 },
                 {
                     // MQ Locations

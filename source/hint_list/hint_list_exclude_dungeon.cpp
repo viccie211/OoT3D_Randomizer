@@ -233,18 +233,18 @@ void HintTable_Init_Exclude_Dungeon() {
 
       hintTable[DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1] = HintText::Exclude({
                        // obscure text
-                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1"},
+                       Text{"on #a pillar overlooking some lava islands# lays", /*french*/"on #a pillar overlooking some lava islands# lays", /*spanish*/"on #a pillar overlooking some lava islands# lays", /*italian*/"on #a pillar overlooking some lava islands# lays", /*german*/"on #a pillar overlooking some lava islands# lays"},
                       },{},
                       // Clear text
-                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_1 Clear Hint"},                       
+                       Text{"on #pillar overlooking a miniboss room in DC# lays", /*french*/"on #pillar overlooking a miniboss room in DC# lays", /*spanish*/"on #pillar overlooking a miniboss room in DC# lays", /*italian*/"on #pillar overlooking a miniboss room in DC# lays", /*german*/"on #pillar overlooking a miniboss room in DC# lays"},                       
    );
    
       hintTable[DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2] = HintText::Exclude({
-                       // obscure text
-                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2"},
+                                         // obscure text
+                       Text{"on #a pillar overlooking some lava islands# lays", /*french*/"on #a pillar overlooking some lava islands# lays", /*spanish*/"on #a pillar overlooking some lava islands# lays", /*italian*/"on #a pillar overlooking some lava islands# lays", /*german*/"on #a pillar overlooking some lava islands# lays"},
                       },{},
                       // Clear text
-                       Text{"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*french*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*spanish*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*italian*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint", /*german*/"DODONGOS_CAVERN_2F_MINIBOSS_ROOM_HEART_2 Clear Hint"},                       
+                       Text{"on #pillar overlooking a miniboss room in DC# lays", /*french*/"on #pillar overlooking a miniboss room in DC# lays", /*spanish*/"on #pillar overlooking a miniboss room in DC# lays", /*italian*/"on #pillar overlooking a miniboss room in DC# lays", /*german*/"on #pillar overlooking a miniboss room in DC# lays"},                       
    );
 
     hintTable[DODONGOS_CAVERN_KING_DODONGO_HEART] = HintText::Exclude({
@@ -575,6 +575,38 @@ void HintTable_Init_Exclude_Dungeon() {
                        // obscure text
                        Text{"#revolving walls# in the Forest Temple conceal", /*french*/"des #murs rotatifs dans la forêt# recèlent", /*spanish*/"las #paredes giratorias# del Templo del Bosque conceden", /*italian*/"#muri rotanti# nel Santuario della Foresta nascondono", /*german*/"nahe #drehbarer Wände# des Waldtempels, |wäre|wären|"},
     });
+
+    hintTable[FOREST_TEMPLE_WELL_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #sunken heart deep in the woods# is", /*french*/"a #sunken heart deep in the woods# is", /*spanish*/"a #sunken heart deep in the woods# is", /*italian*/"a #sunken heart deep in the woods# is", /*german*/"a #sunken heart deep in the woods# is"},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in the sewer of the Forest Temple# is", /*french*/"a #heart in the sewer of the Forest Temple# is", /*spanish*/"a #heart in the sewer of the Forest Temple# is", /*italian*/"a #heart in the sewer of the Forest Temple# is", /*german*/"a #heart in the sewer of the Forest Temple# is"},                       
+   );
+
+   hintTable[FOREST_TEMPLE_WELL_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #sunken heart deep in the woods# is", /*french*/"a #sunken heart deep in the woods# is", /*spanish*/"a #sunken heart deep in the woods# is", /*italian*/"a #sunken heart deep in the woods# is", /*german*/"a #sunken heart deep in the woods# is"},
+                      },{},
+                      // Clear text
+                       Text{"a #heart in the sewer of the Forest Temple# is", /*french*/"a #heart in the sewer of the Forest Temple# is", /*spanish*/"a #heart in the sewer of the Forest Temple# is", /*italian*/"a #heart in the sewer of the Forest Temple# is", /*german*/"a #heart in the sewer of the Forest Temple# is"},                       
+   );
+
+   hintTable[FOREST_TEMPLE_LEVEL_ISLAND_RIDGE_HEART_1] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #heart atop a ruin# is replaced by", /*french*/"a #heart atop a ruin# is replaced by", /*spanish*/"a #heart atop a ruin# is replaced by", /*italian*/"a #heart atop a ruin# is replaced by", /*german*/"a #heart atop a ruin# is replaced by"},
+                      },{},
+                      // Clear text
+                       Text{"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*french*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*spanish*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*italian*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*german*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by"},                       
+   );
+
+   hintTable[FOREST_TEMPLE_LEVEL_ISLAND_RIDGE_HEART_2] = HintText::Exclude({
+                       // obscure text
+                       Text{"a #heart atop a ruin# is replaced by", /*french*/"a #heart atop a ruin# is replaced by", /*spanish*/"a #heart atop a ruin# is replaced by", /*italian*/"a #heart atop a ruin# is replaced by", /*german*/"a #heart atop a ruin# is replaced by"},
+                      },{},
+                      // Clear text
+                       Text{"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*french*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*spanish*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*italian*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by", /*german*/"a #heart atop the ruin on the level island in Forest Temple# is replaced by"},                       
+   );
 
     hintTable[FOREST_TEMPLE_MQ_FIRST_ROOM_CHEST] = HintText::Exclude({
                        // obscure text

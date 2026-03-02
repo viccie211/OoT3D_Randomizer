@@ -345,7 +345,7 @@ void AreaTable_Init_DodongosCavern() {
             {
                 // Locations
                 LocationAccess(DODONGOS_CAVERN_BOMB_FLOWER_PLATFORM_CHEST, { [] { return true; } }),
-                LocationAccess(DODONGOS_CAVERN_2F_BLADE_TRAPS_ROOM_HEART_BEHIND_BLOCK, { [] { return GoronBracelet /*viccie211: I'm not sure whether you can pull this block without strength so I put it on bracelet for now*/; } }), 
+                LocationAccess(DODONGOS_CAVERN_2F_BLADE_TRAPS_ROOM_HEART_BEHIND_BLOCK, { [] { return true; } }), 
             },
             {
                 // Exits
