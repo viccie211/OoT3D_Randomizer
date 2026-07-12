@@ -155,8 +155,12 @@ void AreaTable_Init_SpiritTemple() {
             "Child Spirit Temple Climb", "Spirit Temple", SPIRIT_TEMPLE, NO_DAY_NIGHT_CYCLE,
             {
                 // Events
-                EventAccess(&DekuBabaSticks, { [] { return DekuBabaSticks || CanGetDekuBabaSticks(6, 0, 4); } }),
-                EventAccess(&DekuBabaNuts, { [] { return DekuBabaNuts || CanGetDekuBabaNuts(6, 0, 4); } }),
+                EventAccess(&DekuBabaSticks, { [] {
+                    return DekuBabaSticks || CanGetDekuBabaSticks(6, 0, 4, { 0, 1 });// I'm Guessing 0 and 1 are the skullwalltulas on the climb
+                } }),
+                EventAccess(&DekuBabaNuts, { [] {
+                    return DekuBabaNuts || CanGetDekuBabaNuts(6, 0, 4, { 0, 1 });
+                } }),
             },
             {
                 // Locations
@@ -192,6 +196,18 @@ void AreaTable_Init_SpiritTemple() {
                 Entrance(SPIRIT_TEMPLE_CENTRAL_CHAMBER,
                          { [] { return HasExplosives || (ExtraArrowEffects && CanUse(LIGHT_ARROWS)); } }),
             });
+        areaTable[SPIRIT_TEMPLE_CHILD_SUN_ROOM] =
+            Area("Child Spirit Temple Child Sun Room", "Spirit Temple", SPIRIT_TEMPLE, NO_DAY_NIGHT_CYCLE,
+                 {
+                     // Events
+                     EventAccess(&DekuBabaSticks, { [] {
+                         return DekuBabaSticks || CanGetDekuBabaSticks(6, 0, 4, { 2,3,4,5 });
+                     } }),
+                     EventAccess(&DekuBabaNuts, { [] {
+                         return DekuBabaNuts || CanGetDekuBabaNuts(6, 0, 4, { 2,3,4,5 });
+                     } }),
+                 },
+                 {}, {});
 
         static constexpr auto ForEachEnemy_EarlyAdult = [](auto& enemyCheckFn) {
             return enemyCheckFn(6, 0, 0, { 2 }) ||
