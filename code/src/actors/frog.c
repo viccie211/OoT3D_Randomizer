@@ -1,6 +1,8 @@
 #include "z3D/z3D.h"
 #include "z3D/actors/z_en_fr.h"
 #include "settings.h"
+#include "objects.h"
+#include "enemy_souls.h"
 
 void EnFr_rSetReward(EnFr* frog) {
     if (frog->songIndex < FROG_STORMS) {
@@ -22,4 +24,10 @@ void FrogSongTimer_Init(void) {
     for (u8 i = 0; i < ARRAY_SIZE(sTimerFrogSong); i++) {
         sTimerFrogSong[i] = FrogSongTimerMultiplier(sTimerFrogSong[i]);
     }
+}
+
+void EnFr_rDraw(Actor* thisx, GlobalContext* ctx){
+    CitraPrint("EnFr_rDraw Actor: %x Params: %x",thisx->id,thisx->params);
+    ObjectEntry* obj = Object_FindEntry(OBJECT_FROG);
+    SoullessModels_ModifyGenericCmb(obj->zarInfo.cmbMans[1]);
 }

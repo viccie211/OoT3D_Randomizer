@@ -5,4 +5,5 @@
 void EnFr_rSetReward(EnFr* frog);
 void FrogSongTimer_Init(void);
 s16 FrogSongTimerMultiplier(s16 initialFrogTimer);
+void EnFr_rDraw(Actor* thisx, GlobalContext* ctx);
 #endif //_FROG_H

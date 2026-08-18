@@ -88,6 +88,7 @@
 #include "obj_mure3.h"
 #include "armos.h"
 #include "poe_collector.h"
+#include "frog.h"
 
 Actor* gRunningActor;
 #define MAX_RUNNING_ACTORS 5
@@ -352,6 +353,8 @@ void Actor_Init() {
     gActorOverlayTable[0x1C6].initInfo->destroy = EnCow_rDestroy;
 
     gActorOverlayTable[0x1D2].initInfo->update = ObjHamishi_rUpdate;
+
+    
 
     // Define custom object IDs to be by default the same as the base objects they're based on
     const struct {

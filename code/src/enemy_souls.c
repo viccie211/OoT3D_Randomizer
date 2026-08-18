@@ -440,9 +440,9 @@ static void SoullessModels_ModifyCmb(CmbManager* cmbMan, s16 objId, s32 cmbIdx) 
     if (gSettingsContext.soullessEnemiesLook == SOULLESSLOOK_TEXTURELESS) {
         // Modify materials to apply the chosen color and skip drawing the textures.
         for (s32 matIdx = 0; matIdx < cmbMats->materialCount; matIdx++) {
-            if (SoullessModels_ShouldIgnoreMaterial(objId, cmbIdx, matIdx)) {
-                continue;
-            }
+            // if (SoullessModels_ShouldIgnoreMaterial(objId, cmbIdx, matIdx)) {
+            //     continue;
+            // }
 
             Material* mat = &cmbMats->materials[matIdx];
 

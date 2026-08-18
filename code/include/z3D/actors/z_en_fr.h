@@ -24,4 +24,6 @@ typedef struct EnFr {
 } EnFr; // size 0xE50
 
 extern s16 sTimerFrogSong[5];
+
+void EnFr_Draw(Actor* thisx, GlobalContext* ctx);
 #endif //_EN_FR_H_

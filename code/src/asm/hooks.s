@@ -374,6 +374,13 @@ HOOK KingZoraCheckMovedFlag
     cmp r0,#0x0
     bx lr
 
+HOOK EnFrDrawHook
+    push {r0-r12, lr}
+    bl EnFr_rDraw
+    pop {r0-r12, lr}
+    ldrh       r0,[r0,#0x1c]
+    bx lr
+
 HOOK EnFrSetupFrogSongTimerMultiplier
     push {r0,r1,r3-r12,lr}
     mov r0,r2

@@ -54,6 +54,7 @@ typedef enum ObjectId {
     OBJECT_GANONDORF                 = 0x00E1,
     OBJECT_BONGO_BONGO               = 0x00E2,
     OBJECT_CUSTOM_ENEMY_SOUL         = 0x00E4,
+    OBJECT_FROG                      = 0x00E6,
     OBJECT_GI_OCARINA_FAIRY          = 0x010E,
     OBJECT_FREEZARD                  = 0x0114,
     OBJECT_CUSTOM_OCARINA_BUTTON     = 0x0123,

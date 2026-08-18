@@ -167,6 +167,7 @@ SECTIONS
 	Boss_Tw_Destroy = 0x1A88E8 + _LD_OFF;
 	EnAm_Draw = 0x1ACD4C + _LD_OFF;
 	EnFd_Update = 0x1B004C + _LD_OFF;
+  .patch_EnFrDrawPatch 0x1B09B4 + _LD_OFF : { *(.patch_EnFrDrawPatch) }
 	EnFu_Update = 0x1B1328 + _LD_OFF;
 	EnGb_Update = 0x1B2354 + _LD_OFF;
 	EnGeldB_Draw = 0x1B2B00 + _LD_OFF;

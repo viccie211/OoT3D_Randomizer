@@ -561,6 +561,9 @@ PATCH CowItemOverride
 PATCH AnjuCheckCuccoAmount
     b hook_AnjuCheckCuccoAmount
 
+PATCH EnFrDrawPatch
+    bl hook_EnFrDrawHook
+
 PATCH EnFrSetupFrogSongTimerMultiplier
     bl hook_EnFrSetupFrogSongTimerMultiplier
 
