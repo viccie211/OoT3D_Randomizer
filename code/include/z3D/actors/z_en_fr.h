@@ -33,8 +33,10 @@ typedef struct EnFr {
     /* 0xB48 */ u8 isActive;
     /* 0xB49 */ u8 growingScaleIndex;
     /* 0xB4A */ u8 isGrowing;
-    /* 0xB4B*/  u8 ocarinaNoteIndex;
-    /* 0xB4C*/  u8 ocarinaNote;
+    /* 0xB4B */ u8 unk_B4B;
+    /* 0xB4C */ u8 ocarinaNote;
+    /* 0xB4D */ char unk_B4D[0xEE];
+    /* OxC3C */ u8 ocarinaNoteIndex; 
     /* 0xC3E */ u8 songIndex;
     /* 0xC3F */ char unk_20C[0x5];
     /* 0xC44 */ s32 reward;

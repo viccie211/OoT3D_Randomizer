@@ -37,11 +37,22 @@ void EnFr_ButterflyColorOverride(CmbManager* cmbMan, u8 noteIndex) {
     CMB_MATS* cmbMats      = Cmb_GetMatsChunk(cmbMan->cmbChunk);
     CMB_TEX* cmbTex        = Cmb_GetTexChunk(cmbMan->cmbChunk);
     // Modify all combiners to use operand `green` instead of `color`, making the texture draw in grayscale.
+    u8 colorMode = noteIndex % 3;
     for (Combiner* combiner = Cmb_GetCombiners(cmbMats); (u32)combiner < (u32)cmbTex; combiner++) {
         for (s32 opIdx = 0; opIdx < ARRAY_SIZE(combiner->operandColors); opIdx++) {
-            if (combiner->operandColors[opIdx] == COMBINEROP_COLOR) {
-                combiner->operandColors[opIdx] = COMBINEROP_COLOR+noteIndex;
-            }
+                CitraPrint("opIdx: 0x%x, CombinerOp: 0x%x",opIdx,combiner->operandColors[opIdx]);
+                switch(colorMode){
+                    case 0:
+                        combiner->operandColors[opIdx] = COMBINEROP_COLOR;
+                    break;
+                    case 1:
+                        combiner->operandColors[opIdx] = COMBINEROP_ONEMINUSCOLOR;
+                    break;
+                    case 2:
+                        combiner->operandColors[opIdx] = COMBINEROP_GREEN;
+                    break;
+                }
+                
         }
     }
 };
@@ -50,7 +61,7 @@ void EnFr_ButterflyColorOverride(CmbManager* cmbMan, u8 noteIndex) {
 
 void EnFr_rDraw(Actor* thisx, GlobalContext* ctx){
     EnFr* this = (EnFr*)thisx;
-    u8 ocarinaNoteIndex = this->ocarinaNote;
+    u8 ocarinaNoteIndex = this->ocarinaNoteIndex;
     CitraPrint("OcarinaNoteIndex: %x",ocarinaNoteIndex);
     ObjectEntry* obj = Object_FindEntry(OBJECT_FROG);
     EnFr_ButterflyColorOverride(obj->zarInfo.cmbMans[1],ocarinaNoteIndex);
