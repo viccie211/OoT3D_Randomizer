@@ -16,7 +16,25 @@ typedef enum {
 
 typedef struct EnFr {
     /* 0x000 */ Actor actor;
-    /* 0x1A4 */ char unk_1A4[0xA9A];
+    /* 0x1a4 */ SkelAnime skelAnime;
+    /* 0x228 */ char unk_228[0x790];
+    /* 0x9b8 */ SkelAnime skelAnimeButterfly;
+    /* 0xA3C */ char unk_A3C[0xD8];
+    /* 0xB14 */ void* actionFunc;
+    /* 0xB18 */ char unk_B18[0x1F];
+    /* 0xB37 */ s32 jumpCounter;
+    /* 0xB3B */ float blinkTimer;
+    /* 0xB3F */ void* blinkFunk;
+    /* 0xB43 */ u8 eyeTexIndex;
+    /* 0xB44 */ u8 isJumpingUp;
+    /* 0xB45 */ u8 isBelowWaterSurfacePrevious;
+    /* 0xB46 */ u8 isBelowWaterSurfaceCurrent;
+    /* 0xB47 */ u8 isDeactivating;
+    /* 0xB48 */ u8 isActive;
+    /* 0xB49 */ u8 growingScaleIndex;
+    /* 0xB4A */ u8 isGrowing;
+    /* 0xB4B*/  u8 ocarinaNoteIndex;
+    /* 0xB4C*/  u8 ocarinaNote;
     /* 0xC3E */ u8 songIndex;
     /* 0xC3F */ char unk_20C[0x5];
     /* 0xC44 */ s32 reward;
