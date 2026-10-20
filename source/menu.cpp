@@ -16,6 +16,7 @@
 #include "location_access.hpp"
 #include "debug.hpp"
 #include "music.hpp"
+#include "localization.hpp"
 
 bool gInitError = false;
 
@@ -41,7 +42,8 @@ void PrintTopScreen() {
     printf("            Select: Exit to Homebrew Menu\n");
     printf("                 Y: New Random Seed\n");
     printf("                 X: Input Custom Seed\n");
-    printf("\x1b[11;7HCurrent Seed: %s", Settings::seed.c_str());
+    printf("\x1b[11;7HCurrent Seed: %s\n", Settings::seed.c_str());
+    printf("\x1b[12;7HSwitchedText: %s", localizationManager->GetString("hello").c_str() );
 }
 
 void GfxInit(void) {
@@ -284,6 +286,12 @@ void MenuUpdate(u32 kDown, bool updatedByHeld, u32 kHeld) {
             pastSeedLength = Settings::seed.length();
             Settings::seed = GetInput("Enter Seed");
             seedChanged    = true;
+        }
+
+        if (kDown & KEY_L) {
+            localizationManager->SetLanguage(Languages::English);
+            consoleSelect(&topScreen);
+            printf("\x1b[12;7HSwitchedText: %s", localizationManager->GetString("hello").c_str() );
         }
 
         // Reprint seed if it changed
