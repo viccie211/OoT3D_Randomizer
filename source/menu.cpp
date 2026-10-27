@@ -38,12 +38,11 @@ void PrintTopScreen() {
     printf("\x1b[2;11H%sOcarina of Time 3D Randomizer%s", CYAN, RESET);
     int verCol = (50 - RandomizerVersion.length()) / 2 + 1;
     printf("\x1b[3;%dH%s%s%s", verCol, CYAN, RandomizerVersion.c_str(), RESET);
-    printf("\x1b[4;10HA/B/D-pad: Navigate Menu\n");
-    printf("            Select: Exit to Homebrew Menu\n");
-    printf("                 Y: New Random Seed\n");
-    printf("                 X: Input Custom Seed\n");
-    printf("\x1b[11;7HCurrent Seed: %s\n", Settings::seed.c_str());
-    printf("\x1b[12;7HSwitchedText: %s", localizationManager->GetString("hello").c_str() );
+    printf(localizationManager->GetString("navigate"));
+    printf(localizationManager->GetString("selectExit"));
+    printf(localizationManager->GetString("newRandomSeed"));
+    printf(localizationManager->GetString("inputCustomSeed"));
+    printf(localizationManager->GetString("currentSeed"), Settings::seed.c_str());
 }
 
 void GfxInit(void) {
@@ -289,9 +288,9 @@ void MenuUpdate(u32 kDown, bool updatedByHeld, u32 kHeld) {
         }
 
         if (kDown & KEY_L) {
-            localizationManager->SetLanguage(Languages::English);
+            localizationManager->CycleLanguage();
             consoleSelect(&topScreen);
-            printf("\x1b[12;7HSwitchedText: %s", localizationManager->GetString("hello").c_str() );
+            PrintTopScreen();
         }
 
         // Reprint seed if it changed

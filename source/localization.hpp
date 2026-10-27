@@ -1,5 +1,7 @@
 #include <string>
 #include <unordered_map>
+#include "localization_dictionaries.hpp"
+#include "debug.hpp"
 
 typedef enum Languages {
   English,
@@ -11,6 +13,7 @@ typedef enum Languages {
 
 class LocalizationManager {
 private:
+    Languages currentLanguage;
     std::unordered_map<Languages, std::unordered_map<std::string, std::string>*> dictionaries;
     std::unordered_map<std::string, std::string>* currentDictionary;
 
@@ -18,33 +21,36 @@ public:
     LocalizationManager() {
         // Initialization inside the constructor works because it's inside a function!
         
-        auto englishDict = new std::unordered_map<std::string, std::string>();
-        (*englishDict)["hello"] = "Hello";
-        (*englishDict)["bye"] = "Goodbye";
-        dictionaries[English] = englishDict;
-
-        auto frenchDict = new std::unordered_map<std::string, std::string>();
-        (*frenchDict)["hello"] = "Bonjour";
-        (*frenchDict)["bye"] = "Au revoir";
-        dictionaries[French] = frenchDict;
+        dictionaries[English] = &localizationDictionaries->dictEnUS;
+        dictionaries[French] = &localizationDictionaries->dictFrFR;
 
         // Set a default active dictionary
-        currentDictionary = dictionaries[French];
+        currentLanguage=English;
+        currentDictionary = dictionaries[currentLanguage];
+
     }
 
-    // Clean up memory in the destructor
-    ~LocalizationManager() {
-        for (auto& [lang, dictPtr] : dictionaries) {
-            delete dictPtr;
-        }
-    }
+    ~LocalizationManager() {}
 
   void SetLanguage(Languages newLanguage){
       currentDictionary = dictionaries[newLanguage];
+      currentLanguage = newLanguage;
+  }
+  void CycleLanguage(){
+    if(currentLanguage==English)
+        SetLanguage(French);
+    else
+        SetLanguage(English);
   }
 
-  std::string GetString(std::string key){
-    return (*currentDictionary)[key];
+  const char* GetString(std::string key){
+    CitraPrint("Translation Key requested: " +key);
+    auto translation = (*currentDictionary).find(key);
+    CitraPrint("Translation found: "+(*currentDictionary)[key]);
+    if(translation==(*currentDictionary).end()){
+        return key.c_str();
+    }
+    return translation->second.c_str();
   }
 };
 
